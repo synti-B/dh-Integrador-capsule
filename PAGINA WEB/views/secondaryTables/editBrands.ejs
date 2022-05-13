@@ -1,0 +1,27 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+                <br/>
+
+                <section class="form-registro">
+                    <h4>Formulario Editar Marca</h4>
+                    <form action="/brand/update/<%=brand.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <input class="control" type="text" name="name" id="name" value="<%=brand.name %>">
+                        <input type="file" name="image" id="image" placeholder="Imagen" class="control">
+                        <button type="submit">Editar</button>
+                    </form>
+
+                </section>
+                <br/>
+                <br/>
+                <br/>
+
+            </main>
+            <%- include ("../partials/footer")%>
+    </body>
+
+    </html>

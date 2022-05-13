@@ -1,0 +1,21 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <section class="form-registro">
+                    <h4>Editar Color</h4>
+                    <form action="/color/update/<%=color.id %>?_method=PUT" method="POST">
+                        <input class="control" type="text" name="name" id="name" value="<%=color.name %>">
+                        <button type="submit">Editar color</button>
+                    </form>
+                </section>
+
+             
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

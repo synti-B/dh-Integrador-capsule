@@ -1,0 +1,57 @@
+<%- include ("../partials/head")%>
+
+
+    <body>
+
+        <%- include("../partials/userheader") %>
+            <main>
+
+                <div class="titleLogin">
+                    <h2>¡ahora tu pass!!!</h2>
+                </div>
+                <div id="errors"></div>
+                <form action="/users/pass" method="POST" class="form-registro">
+
+                    <div class="email">
+                        <input type="text" name="email" id="emailPass" class="control <%= locals.errors && errors.email ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.email :null %>">
+
+                    </div>
+                    <div class="password">
+                        <label><b>Contraseña</b></label>
+                        <input type="password" name="password" id="password" class="control <%= locals.errors && errors.password ? 'is-invalid': null %>">
+
+                        <% if (locals.errors && errors.email) { %>
+                            <div class="text-danger">
+                                <p class="errorEmail">
+                                    <%= errors.email.msg %>
+                                </p>
+
+                            </div>
+                            <% } %>
+
+                                <% if (locals.errors && errors.password) { %>
+                                    <div class="text-danger">
+                                        <p class="errorPassword">
+                                            <%= errors.password.msg %>
+                                        </p>
+                                    </div>
+                                    <% } %>
+
+
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="remember_user">  Recordar mi usuario
+                            </label>
+                                        </div>
+                    </div>
+                    <button class='button' type="submit">Ingresar</button>
+                    <p><a target="_blank" href="#">Olvidé mi contraseña</a></p>
+
+                </form>
+
+            </main>
+            <script src="/js/login.js"></script>
+            <script src="/js/formCreateProduct.js"></script>
+    </body>
+
+    </html>

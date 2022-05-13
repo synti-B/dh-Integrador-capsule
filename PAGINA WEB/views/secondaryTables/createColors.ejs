@@ -1,0 +1,28 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+                <section class="form-registro">
+                    <h4>Formulario de Crear Color</h4>
+                    <form action="/color/create" method="POST">
+                        <input type="text" name="name" id="name" placeholder="Nombre del Color" class="control <%= locals.errors && errors.name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.name :null %>">
+                        <% if (locals.errors && errors.name) { %>
+                            <div class="text-danger">
+                                <%= errors.name.msg %>
+                            </div>
+                            <% } %>
+                                <button type="submit">Crear</button>
+
+                    </form>
+                </section>
+
+
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

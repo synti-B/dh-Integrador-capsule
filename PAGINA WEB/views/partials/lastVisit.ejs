@@ -1,0 +1,77 @@
+<% if (pv1.length > 0 || pv2.length > 0) { %>
+
+
+
+    <div class="contenedor">
+        <div class="titulodeseccion">
+            <h2>Basado en tu ultima visita</h2>
+        </div>
+    </div>
+
+    <div class="carrusel">
+        <% if (pv1.length > 0) { %>
+
+            <% pv1.forEach(product=> { %>
+                <div class="contenedor-foto-texto">
+                    <a href="/products/detail/<%= product.id %> ">
+                        <img src="/img/product/<%= product.image %> " alt="<%= product.name %>" class="imagenes">
+                    <div class="contenedor-texto-icono">
+                        <div class="camionicon">
+                            <i class="fas fa-truck" id="camionicono"></i>
+                        </div>
+                        <div class="contenedor-texto">
+                            <h3 class="precio">$
+                                <%= product.price %>
+                            </h3>
+                            <% if (product.discount > 0  ) { %>
+                            <h3 class="descuento">
+                                <%= product.discount %>% OFF
+                            </h3>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="nombre">
+                        <h3>
+                            <%= product.name %>
+                        </h3>
+                    </div>
+
+                </a>
+
+                </div>
+                <% }) %>
+
+                    <% } %>
+                        <% if (pv2.length > 0) { %>
+
+                            <% pv2.forEach(product=> { %>
+                                <div class="contenedor-foto-texto">
+                                    <a href="/products/detail/<%= product.id %> ">
+                                    <img src="/img/product/<%= product.image %> " alt="<%= product.name %>" class="imagenes">
+                                <div class="contenedor-texto-icono">
+                                    <div class="camionicon">
+                                        <i class="fas fa-truck" id="camionicono"></i>
+                                    </div>
+                                    <div class="contenedor-texto">
+                                        <h3 class="precio">$
+                                            <%= product.price %>
+                                        </h3>
+                                        <% if (product.discount > 0  ) { %>
+                                        <h3 class="descuento">
+                                            <%= product.discount %>% OFF
+                                        </h3>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="nombre">
+                                    <h3>
+                                        <%= product.name %>
+                                    </h3>
+                                </div>
+                            </a>
+                                </div>
+                                <% }) %>
+
+                                    <% } %>
+    </div>
+    <% } %>

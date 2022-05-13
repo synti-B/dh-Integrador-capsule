@@ -1,0 +1,18 @@
+<div class="categoriaspopulares">
+    <h3> Marcas </h3>
+    <div class="categoria">
+        <% brands.forEach( brand => { %>
+            <div class="subcategoria">
+                <a href="/products/brand/<%= brand.name %>">
+                    <img src="/img/brand/<%= brand.image %> " alt="" class="category">
+                    <div class="categoriatexto">
+                       <h3>
+                           <%= brand.name  %>
+                       </h3> 
+                    </div>
+                </a>
+            </div>
+
+            <% }) %>
+    </div>
+</div>

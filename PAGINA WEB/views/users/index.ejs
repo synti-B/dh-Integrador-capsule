@@ -1,0 +1,29 @@
+<%- include ("../partials/head")%>
+
+    <body>
+
+        <%- include ("../partials/loader")%>
+            <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+
+                <main>
+                    <div class="sep"></div>
+                    <%- include ("../partials/bannerInfinito")%>
+
+
+                        <%- include ("../partials/lastVisit", {pv1,pv2})%>
+
+
+                            <%- include ("../partials/offers", {products})%>
+
+
+                </main>
+                <%- include ("../partials/brands", {brands})%>
+                    <%- include ("../partials/categories", {categories})%>
+
+                      
+                            <%- include ("../partials/footer")%>                                
+                                <script src="/js/loader.js"></script>
+
+    </body>
+
+    </html>

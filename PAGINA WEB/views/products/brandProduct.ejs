@@ -1,0 +1,59 @@
+<%- include ("../partials/head")%>
+
+    <body>
+
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+
+                <div class="contenedor">
+                    <div class="titulodeseccion">
+                        <h2>
+                            <%= brand.name %>
+                        </h2>
+                    </div>
+                </div>
+                <div class="carrusel">
+                    <% if (products.length > 0) { %>
+                        <% products.forEach(product=> { %>
+                            <div class="contenedor-foto-texto">
+                                <a href="/products/detail/<%= product.id %> ">
+                                <img src="/img/product/<%= product.image %> " alt="<%= product.name %>" class="imagenes">
+                                <div class="contenedor-texto-icono">
+                                    <div class="camionicon">
+                                        <i class="fas fa-truck" id="camionicono"></i>
+                                    </div>
+                                    <div class="contenedor-texto">
+                                        <h3 class="precio">$
+                                            <%= product.price %>
+                                        </h3>
+                                        <% if (product.discount > 0  ) { %>
+                                            <h3 class="descuento">
+                                                <%= product.discount %>% OFF
+                                            </h3>
+                                            <% } %>
+                                    </div>
+                                </div>
+                                <div class="nombre">
+                                    <h3>
+                                        <%= product.name %>
+                                    </h3>
+                                </div>
+                                </a>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <div class="notFound">
+                                        <h3>No se encontro ningun producto</h3>
+                                    </div>
+                                    <% } %>
+                </div>
+
+              
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

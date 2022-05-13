@@ -1,0 +1,83 @@
+<%- include("../partials/head") %>
+
+    <body>
+        <%- include("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand}) %>
+            <main>
+                <div class="sep"></div>
+                <div class="contenedor">
+                    <br/>
+
+                    <div class="titulodeseccion">
+                        <br/>
+                        <h2>¡Hola
+                            <%= user.first_name %> soy tu Carrito ! ! !</h2>
+                    </div>
+                </div>
+                <div class="carrusel">
+                    <% if (carts.length >0) { %>
+                        <% carts.forEach(cart=> { %>
+                            <div class="contenedor-foto-texto">
+                                <div class="foto-descripcion">
+                                    <img src="/img/product/<%= cart.shoppingProduct.image %>" alt="" class="imagenes2">
+                                    <div class="descripcion-precio-descuento">
+                                        <h3 class="name">
+                                            <%= cart.shoppingProduct.name %>
+                                        </h3>
+                                        <h3 class="descripcion">
+                                            <%= cart.shoppingProduct.description %>
+                                        </h3>
+                                        <h3 class="color">
+                                            Color
+                                            <%= cart.shoppingProduct.color %>
+                                        </h3>
+                                        <div class="precio-descuento">
+                                            <h3 class="precio">$
+                                                <%= cart.shoppingProduct.price - (  cart.shoppingProduct.price  *( cart.shoppingProduct.discount/100)) %>
+                                            </h3>
+
+                                            <h3 class="descuento">
+                                                Cantidad
+                                                <%= cart.quantity_products %>
+                                            </h3>
+
+                                        </div>
+
+
+
+                                        <% if (locals.isLogged && !locals.admin) { %>
+
+                                            <form action="/shopping/delete/<%=cart.id%>?_method=DELETE" method="POST">
+                                                <button class="addCart" type="submit">Quitar</button>
+                                            </form>
+
+                                            <form action="#">
+                                                <button class="buy" type="submit">Comprar</button>
+                                            </form>
+                                            <% } else if (locals.isLogged && locals.admin) { %>
+
+                                                <div class="buttonCM">
+                                                    <button class="edit" type="submit"> <a href="/products/edit/<%= cart.shoppingProduct.id %>">EDITAR</a></button>
+                                                    <form action="/shopping/delete/<%=cart.id%>?_method=DELETE" method="POST">
+                                                        <button class="delete" type="submit">Borrar</button>
+                                                    </form>
+                                                </div>
+                                                <% } %>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <div class="notFound">
+                                        <h3>Aun no agregaste productos ! ! !</h3>
+                                    </div>
+
+                                    <% } %>
+                </div>
+
+           
+            </main>
+            <%- include ("../partials/footer")%>
+    </body>
+
+    </html>

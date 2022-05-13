@@ -1,0 +1,74 @@
+<%- include("../partials/head") %>
+
+    <body>
+        <%- include("../partials/userheader") %>
+
+            <main>
+
+                <div class="titleLogin">
+                    <h2>¡Hola! Aquí completas tus datos para registrarte</h2>
+                </div>
+                <section class="form-registro">
+                    <form action="/users/register" method="POST" enctype="multipart/form-data">
+                        <div id="errors"></div>
+                        <label>Ingresá tu nombre</label>
+                        <input type="text" name="first_name" id="first_name" class="control <%= locals.errors && errors.first_name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.first_name :null %>">
+                        <% if (locals.errors && errors.first_name) { %>
+                            <div class="text-danger">
+                                <%= errors.first_name.msg %>
+                            </div>
+                            <% } %>
+                                <label>Ingresá tu apellido</label>
+                                <input type="text" name="last_name" id="last_name" class="control <%= locals.errors && errors.last_name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.last_name :null %>">
+                                <% if (locals.errors && errors.last_name) { %>
+                                    <div class="text-danger">
+                                        <%= errors.last_name.msg %>
+                                    </div>
+                                    <% } %>
+                                        <label>Ingresá tu e-mail</label>
+                                        <input type="text" name="email" id="email" class="control <%= locals.errors && errors.email ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.email :null %>">
+                                        <% if (locals.errors && errors.email) { %>
+                                            <div class="text-danger">
+                                                <%= errors.email.msg %>
+                                            </div>
+                                            <% } %>
+                                                <label>Crear tu clave</label>
+                                                <input type="password" name="password" id="password" class="control <%= locals.errors && errors.password ? 'is-invalid': null %>">
+                                                <% if (locals.errors && errors.password) { %>
+                                                    <div class="text-danger">
+                                                        <%= errors.password.msg %>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <label>Coloca tu direccion</label>
+                                                        <input type="text" name="adress" id="adress" class="control <%= locals.errors && errors.adress ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.adress :null %>">
+                                                        <% if (locals.errors && errors.adress) { %>
+                                                            <div class="text-danger">
+                                                                <%= errors.adress.msg %>
+                                                            </div>
+                                                            <% } %>
+
+                                                                <label>Imagen de perfil</label>
+                                                                <input class="control" type="file" name="avatar" id="avatar">
+                                                                <% if (locals.errors && errors.avatar) { %>
+                                                                    <div class="text-danger">
+                                                                        <%= errors.avatar.msg %>
+                                                                    </div>
+                                                                    <% } %>
+
+                                                                        <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="imgDefault">  Usar avatar
+                                  </label>
+
+                                                                        <p>Estoy de acuerdo con <a href="/users/terms">Terminos y condiciones</a></p>
+                                                                        <button type="submit">Registrar</button>
+                                                                        <p><a href="/users/login">¿Ya tengo cuenta?</a></p>
+                    </form>
+                </section>
+
+            </main>
+            <script src="/js/formRegister.js"></script>
+
+    </body>
+
+    </html>

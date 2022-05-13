@@ -1,0 +1,48 @@
+<%- include("../partials/head") %>
+
+    <body>
+        <%- include("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand}) %>
+            <main>
+                <div class="sep"></div>
+                <br/>
+
+                <div class="carrusel">
+                    <div class="profilUser">
+
+                        <h2>¡Hola
+                            <%= user.first_name %> !</h2>
+                        <div class="avatarProfile">
+
+                            <img class="circular" src="/img/users/<%= user.avatar %>">
+                        </div>
+                        <div class="buttonCM buttonProfile">
+                            <form action="/users/delete/<%=user.id%>?_method=DELETE" method="POST">
+                                <button class="delete" type="submit"><i class="fi fi-rs-trash"></i></button>
+                            </form>
+                            <button class="edit" type="submit"> <a href="/users/edit/<%=user.id%>"><i class="fi fi-rs-pencil"></i></a></button>
+                        </div>
+
+                    </div>
+
+                    <div class="profilUser2">
+                        <h2>Nombre:
+                            <%= user.first_name %>
+                        </h2>
+                        <h2>Apellido:
+                            <%= user.last_name %>
+                        </h2>
+                        <h2>Email:
+                            <%= user.email %>
+                        </h2>
+                        <h2>Dirección:
+                            <%= user.adress %>
+                        </h2>
+                    </div>
+
+                </div>
+            </main>
+
+            <%- include ("../partials/footer")%>
+    </body>
+
+    </html>

@@ -1,0 +1,53 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <div class="categoriaspopulares">
+                    <br/>
+                    <h2>Todas las marcas</h2><br/>
+
+                    <div class="categoria">
+                        <% if (locals.isLogged && locals.admin) { %>
+                            <div class="subcategoria">
+                                <button class="create"><a href="/brand/create">Agrega marcas</a></button>
+                            </div>
+                            <% } %>
+
+                                <% brands.forEach( brand => { %>
+                                    <div class="subcategoria">
+                                        <div class="foto-nombre">
+                                            <a href="/products/brand/<%= brand.name %>">
+                                                <img src="/img/brand/<%= brand.image %> " alt="<%= brand.image %> " class="category">
+                                                <div class="categoriatexto">
+                                                  <h3>
+                                                      <%= brand.name  %>
+                                                  </h3>  
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <% if (locals.isLogged && locals.admin) { %>
+                                            <div class="buttonCM">
+                                                <button class="edit"><a href="brand/edit/<%= brand.id %>"><i class="fi fi-rs-pencil"></i></a></button>
+                                                <form action="/brand/delete/<%= brand.id %>?_method=DELETE" method="POST">
+                                                    <button class="delete" type="submit"><i class="fi fi-rs-trash"></i></button>
+                                                </form>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <% }) %>
+
+                    </div>
+                </div>
+                </div>
+
+
+
+               
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

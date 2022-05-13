@@ -1,0 +1,34 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+                <section class="form-registro">
+                    <h4>Formulario de Crear Marcas</h4>
+                    <form action="/brand/create" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="name" id="name" placeholder="Nombre de la marca" class="control <%= locals.errors && errors.name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.name :null %>">
+                        <% if (locals.errors && errors.name) { %>
+                            <div class="text-danger">
+                                <%= errors.name.msg %>
+                            </div>
+                            <% } %>
+                                <input type="file" name="image" id="image" placeholder="Imagen" class="control">
+                                <% if (locals.errors && errors.image) { %>
+                                    <div class="text-danger">
+                                        <%= errors.image.msg %>
+                                    </div>
+                                    <% } %>
+
+                                        <button type="submit">Crear</button>
+                    </form>
+                </section>
+
+            </main>
+
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

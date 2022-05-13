@@ -1,0 +1,51 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <div class="categoriaspopulares">
+                    <br/>
+                    <h2>Todos los colores</h2><br/>
+                    <div class="categoria">
+                        <% if (locals.isLogged && locals.admin) { %>
+                            <div class="subcategoria">
+                                <button class="create"><a href="/color/create">Agrega colores</a></button>
+                            </div>
+                            <% } %>
+
+                                <% colors.forEach( color => { %>
+                                    <div class="subcategoria">
+                                        <div class="foto-nombre">
+
+                                            <div class="text-color">
+                                                <h3>
+                                                    <%= color.name  %>
+                                                </h3>
+                                            </div>
+
+                                        </div>
+                                        <% if (locals.isLogged && locals.admin) { %>
+                                            <div class="buttonCM">
+                                                <button class="edit"><a href="color/edit/<%= color.id %>"><i class="fi fi-rs-pencil"></i></a></button>
+                                                <form action="/color/delete/<%= color.id %>?_method=DELETE" method="POST">
+                                                    <button class="delete" type="submit"><i class="fi fi-rs-trash"></i></button>
+                                                </form>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <% }) %>
+
+                    </div>
+                </div>
+                </div>
+
+
+
+  
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

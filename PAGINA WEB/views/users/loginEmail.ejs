@@ -1,0 +1,33 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include("../partials/userheader") %>
+            <main>
+
+                <div class="titleLogin">
+                    <h2>¡Hola Ingresa tu email para loguearte!</h2>
+                </div>
+                <div id="errors"></div>
+                <form action="/users/login" method="POST" class="form-registro">
+
+                    <label><b>Correo electrónico</b></label>
+                    <input type="text" name="email" id="emailLogin" class="control <%= locals.errors && errors.email ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.email :null %>">
+                    <% if (locals.errors && errors.email) { %>
+                        <div class="text-danger">
+                            <p class="errorEmail">
+                                <%= errors.email.msg %>
+                            </p>
+                        </div>
+                        <% } %>
+                            <button type="submit">Continuar</button>
+                            <p><a target="_blank" href="">Olvidé mi contraseña</a></p>
+                            <p><a href="/users/register">¿Aún no tenes cuenta?</a></p>
+
+                </form>
+
+
+            </main>
+            <script src="/js/formLoginEmail.js"></script>
+    </body>
+
+    </html>

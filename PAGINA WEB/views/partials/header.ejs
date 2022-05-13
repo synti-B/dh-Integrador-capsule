@@ -1,0 +1,133 @@
+<header>
+    <div class="logo">
+        <div class="hamburguesa">
+            <i class="fas fa-bars" id="burguerDiv" style="display: block;"></i>
+        </div>
+        <div class="logo-busqueda">
+            <div class="imgLogo">
+                <a href="/"><img src="/img/logo5.png" alt="" class="logoimg"></a>
+            </div>
+            <div class="busqueda">
+                <form action="/products/search" method="GET">
+                    <input type="search" name="busqueda" placeholder="Buscar" class="buscar">
+                    <button class="lupa" type="submit">
+                        <i class=" fas fa-search "></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-navbar">
+        <% if (locals.isLogged && !locals.admin) { %>
+            <ul class="left-navbar">
+                <li><a href="/products">Productos</a></li>
+                <li class="dropdown">
+                    <a class="dropbtn" href="/brand">Marcas  </a>
+                    <div class="dropdown-content">
+                        <% productBrand.forEach(element => { %>
+                            <a href="/products/brand/<%= element.name %> ">
+                                <%= element.name %> :
+                                    <%= element.cantidad %>
+                            </a>
+                            <% }) %>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropbtn" href="/category">Categorias</a>
+                    <div class="dropdown-content">
+                        <% productCat.forEach(element => { %>
+                            <a href="/products/category/<%= element.name %> ">
+                                <%= element.name %> :
+                                    <%= element.cantidad %>
+                            </a>
+                            <% }) %>
+                    </div>
+                </li>
+            </ul>
+            <ul class="right-navbar">
+                <li><a href="/shopping/cart">Mis compras <i class="fas fa-shopping-bag"></i></a></li>
+                <li><a href="/users/logout">Cerrar sesión <i class="far fa-address-card"></i></a></li>
+
+                <li>
+                    <a href="/users/profile">
+                        <%= locals.userLogged.first_name %>
+                    </a>
+                </li>
+                <li><img class="imgProfile" src="/img/users/<%= locals.userLogged.avatar %>"></li>
+            </ul>
+            <% } else if (locals.isLogged && locals.admin) { %>
+                <ul class="left-navbar">
+                    <li><a href="/products">Productos</a></li>
+                    <li class="dropdown">
+                        <a class="dropbtn" href="/brand">Marcas  </a>
+                        <div class="dropdown-content">
+                            <% productBrand.forEach(element => { %>
+                                <a href="/products/brand/<%= element.name %> ">
+                                    <%= element.name %> :
+                                        <%= element.cantidad %>
+                                </a>
+                                <% }) %>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropbtn" href="/category">Categorias</a>
+                        <div class="dropdown-content">
+                            <% productCat.forEach(element => { %>
+                                <a href="/products/category/<%= element.name %>">
+                                    <%= element.name %> :
+                                        <%= element.cantidad %>
+                                </a>
+                                <% }) %>
+                        </div>
+                    </li>
+                    <li><a href="/color">Colores</a></li>
+
+                </ul>
+                <ul class="right-navbar">
+                    <li><a href="/users/logout">Cerrar sesión <i class="far fa-address-card"></i></a></li>
+
+                    <li>
+                        <a href="/users/profile">
+                            <%= locals.userLogged.first_name %>
+                        </a>
+                    </li>
+                    <li><img class="imgProfile" src="/img/users/<%= locals.userLogged.avatar %>"></li>
+                </ul>
+                <% } else { %>
+                    <ul class="left-navbar">
+                        <li><a href="/products">Productos</a></li>
+                        <li class="dropdown">
+                            <a class="dropbtn" href="/brand">Marcas  </a>
+                            <div class="dropdown-content">
+                                <% productBrand.forEach(element => { %>
+                                    <a href="/products/brand/<%= element.name %> ">
+                                        <%= element.name %> :
+                                            <%= element.cantidad %>
+                                    </a>
+                                    <% }) %>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropbtn" href="/category">Categorias</a>
+                            <div class="dropdown-content">
+                                <% productCat.forEach(element => { %>
+                                    <a href="/products/category/<%= element.name %> ">
+                                        <%= element.name %> :
+                                            <%= element.cantidad %>
+                                    </a>
+                                    <% }) %>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="right-navbar">
+                        <li><a href="/users/register">Creá tu cuenta <i class="far fa-address-card"></i></a></li>
+                        <li><a href="/users/login">Ingresá <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a href="/users/help">Ayuda </a></li>
+                    </ul>
+
+                    <% } %>
+    </nav>
+
+</header>
+<script src="/js/burger.js"></script>

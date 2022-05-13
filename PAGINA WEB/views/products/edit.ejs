@@ -1,0 +1,89 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <section class="form-registro">
+                    <h4>Formulario Editar</h4>
+                    <form action="/products/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <input class="control" type="text" name="name" id="name" value="<%=product.name %>">
+                        <input class="control" type="text" name="description" id="description" value="<%=product.description%>">
+                        <input class="control" type="file" name="image" id="image">
+
+                        <input class="control" type="number" name="stock" id="stock" value=<%=product.stock %>>
+
+                        <input class="control" type="number" name="price" id="precio" value=<%=product.price %>>
+
+                        <input class="control" type="number" name="discount" id="discount" value=<%=product.discount %>>
+
+                        <select name="category" id="" class="control" required>
+                            <% categories.forEach(category=> { %>
+
+                                <% if (category.id==product.category_id) { %>
+
+                                    <option value="<%= category.id %>" selected>
+                                        <%= category.name %>
+                                    </option>
+
+                                    <% } else { %>
+                                        <option value="<%= category.id %>">
+                                            <%= category.name %>
+                                        </option>
+
+                                        <% } %>
+
+                                            <% }); %>
+                        </select>
+
+                        <select name="color" id="" class="control" required>
+                            <% colors.forEach(color=> { %>
+
+                                <% if (color.id==product.color_id) { %>
+
+                                    <option value="<%= color.id %>" selected>
+                                        <%= color.name %>
+                                    </option>
+
+                                    <% } else { %>
+                                        <option value="<%= color.id %>">
+                                            <%= color.name %>
+                                        </option>
+
+                                        <% } %>
+
+                                            <% }); %>
+                        </select>
+
+                        <select name="brand" id="" class="control" required>
+                            <% brands.forEach(brand=> { %>
+
+                                <% if (brand.id==product.brand_id) { %>
+
+                                    <option value="<%= brand.id %>" selected>
+                                        <%= brand.name %>
+                                    </option>
+
+                                    <% } else { %>
+                                        <option value="<%= brand.id %>">
+                                            <%= brand.name %>
+                                        </option>
+
+                                        <% } %>
+
+                                            <% }); %>
+                        </select>
+
+                        <button type="submit">Editar</button>
+                    </form>
+
+                </section>
+
+ 
+
+            </main>
+            <%- include ("../partials/footer")%>
+
+    </body>
+
+    </html>

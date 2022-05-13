@@ -1,0 +1,22 @@
+<% if (categories.length >0) { %>
+    <div class="categoriaspopulares">
+        <h3> Categorias </h3>
+        <div class="categoria">
+            <% categories.forEach( category => { %>
+
+                <div class="subcategoria">
+                    <a href="/products/category/<%=category.name %>">
+                        <img src="/img/category/<%= category.image %> " alt="" class="category">
+                        <div class="categoriatexto">
+                            <h3>
+
+                                <%= category.name  %>
+                            </h3>
+                        </div>
+                    </a>
+                </div>
+
+                <% }) %>
+        </div>
+    </div>
+    <% } %>

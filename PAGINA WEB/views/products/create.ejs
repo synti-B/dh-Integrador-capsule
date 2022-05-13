@@ -1,0 +1,110 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+                <section class="form-registro">
+                    <h4>Formulario de Crear</h4>
+
+                    <div id="errors"></div>
+
+                    <form action="/products/create" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="name" id="name" placeholder="Nombre del producto" class="control <%= locals.errors && errors.name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.name :null %>">
+                        <% if (locals.errors && errors.name) { %>
+                            <div class="text-danger">
+                                <%= errors.name.msg %>
+                            </div>
+                            <% } %>
+
+                                <input type="text" name="description" id="description" placeholder="Descripcion" class="control <%= locals.errors && errors.name ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.description :null %>">
+                                <% if (locals.errors && errors.description) { %>
+                                    <div class="text-danger">
+                                        <%= errors.description.msg %>
+                                    </div>
+                                    <% } %>
+
+                                        <input type="file" name="image" id="image" placeholder="Imagen" class="control">
+                                        <% if (locals.errors && errors.image) { %>
+                                            <div class="text-danger">
+                                                <%= errors.image.msg %>
+                                            </div>
+                                            <% } %>
+
+                                                <input type="number" name="stock" id="stock" placeholder="Stock" class="control <%= locals.errors && errors.stock ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.stock :null %>">
+                                                <% if (locals.errors && errors.stock) { %>
+                                                    <div class="text-danger">
+                                                        <%= errors.stock.msg %>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <input type="number" name="price" id="price" placeholder="Precio" class="control <%= locals.errors && errors.price ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.price :null %>">
+                                                        <% if (locals.errors && errors.price) { %>
+                                                            <div class="text-danger">
+                                                                <%= errors.price.msg %>
+                                                            </div>
+                                                            <% } %>
+
+                                                                <input type="number" name="discount" id="discount" placeholder="Descuento" class="control <%= locals.errors && errors.discount ? 'is-invalid': null %>" value="<%= locals.oldData ? oldData.discount :null %>">
+                                                                <% if (locals.errors && errors.discount) { %>
+                                                                    <div class="text-danger">
+                                                                        <%= errors.discount.msg %>
+                                                                    </div>
+                                                                    <% } %>
+
+                                                                        <select name="category" id="" class="control" required>
+                                      <option value="" disabled selected>- Seleccione la categoria - </option>
+                                      <% categories.forEach(category=> { %>
+                                        <option value="<%= category.id %>">
+                                          <%= category.name %>
+                                        </option>
+                                        <% }); %>
+                                    </select>
+                                                                        <% if (locals.errors && errors.category) { %>
+                                                                            <div class="text-danger">
+                                                                                <%= errors.category.msg %>
+                                                                            </div>
+                                                                            <% } %>
+
+                                                                                <select name="color" id="" class="control" required>
+                                          <option value="" disabled selected>- Seleccione el color - </option>
+                                          <% colors.forEach(color=> { %>
+                                            <option value="<%= color.id %>">
+                                              <%= color.name %>
+                                            </option>
+                                            <% }); %>
+                                        </select>
+                                                                                <% if (locals.errors && errors.color) { %>
+                                                                                    <div class="text-danger">
+                                                                                        <%= errors.color.msg %>
+                                                                                    </div>
+                                                                                    <% } %>
+
+                                                                                        <select name="brand" id="" class="control" required>
+                                              <option value="" disabled selected>- Seleccione la marca - </option>
+                                              <% brands.forEach(brand=> { %>
+                                                <option value="<%= brand.id %>">
+                                                  <%= brand.name %>
+                                                </option>
+                                                <% }); %>
+                                            </select>
+                                                                                        <% if (locals.errors && errors.brand) { %>
+                                                                                            <div class="text-danger">
+                                                                                                <%= errors.brand.msg %>
+                                                                                            </div>
+                                                                                            <% } %>
+
+                                                                                                <button type="submit">crear</button>
+
+                    </form>
+                </section>
+
+
+          
+            </main>
+            <%- include ("../partials/footer")%>
+                <script src="/js/formCreateProduct.js"></script>
+    </body>
+
+    </html>

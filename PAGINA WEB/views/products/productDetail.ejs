@@ -1,0 +1,91 @@
+<%- include ("../partials/head")%>
+
+    <body>
+        <%- include ("../partials/header",{productCat: locals.productXCat,productBrand: locals.productXBrand})%>
+            <main>
+                <div class="sep"></div>
+                <br/>
+                <div class="contenedor">
+                    <% if (product) { %>
+                        <div class="titulodeseccion">
+                            <h2>Detalle del producto:
+                                <%= product.name %>
+                            </h2>
+                        </div>
+                </div>
+                <div class="carrusel">
+                    <div class="contenedor-foto-texto">
+                        <div class="foto-descripcion">
+                            <img src="/img/product/<%= product.image %> " alt="<%= product.name %>" class="imagenes2">
+                            <div class="descripcion-precio-descuento">
+                                <h3 class="name"></h3>
+                                <h3 class="descripcion">
+                                    <%= product.description %>
+                                </h3>
+                                <h3 class="color">
+                                    Color
+                                    <%= product.productscolors.name%>
+                                </h3>
+                                <div class="precio-descuento">
+                                    <h3 class="precio">$
+                                        <%= product.price %>
+                                    </h3>
+                                    <% if (product.discount > 0 ) { %>
+                                        <h3 class="descuento">
+                                            <%= product.discount %>% OFF
+                                        </h3>
+                                        <% } %>
+                                </div>
+
+                                <h3>$
+                                    <%= product.price- ( product.price  *(product.discount/100)) %>
+                                </h3>
+
+                                <% if (locals.isLogged && !locals.admin) { %>
+                                    <form action="/shopping/add/<%= product.id %> " method="POST">
+                                        <label for="stock">Cantidad   </label>
+                                        <select name="stock" id="stock" class="select" required>
+                                           <% for( let i=1; i <=product.stock; i++ ) { %>
+                                                      <option value="<%= i %>">
+                                                           <%= i %>
+                                                     </option>
+                                                  <% } %>
+                                           </select>
+                                        <button class="addCart" type="submit">Agregar a carrito</button>
+                                    </form>
+                                    <form action="#">
+                                        <button class="buy" type="submit">Comprar</button>
+                                    </form>
+                                    <% } else if (locals.isLogged && locals.admin) { %>
+
+                                        <div class="buttonCM">
+                                            <button class="edit" type="submit"><a href="/products/edit/<%= product.id %>">EDITAR</a></button>
+                                            <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+                                                <button class="delete" type="submit">BORRAR</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                            </div>
+                        </div>
+
+                    </div>
+                    <% } else { %>
+                </div>
+                <div class="carrusel">
+                    <div class="notFound">
+                        <h3>No se encontro ningun producto</h3>
+                    </div>
+                </div>
+                <% } %>
+                    </div>
+
+
+            </main>
+
+
+            <%- include ("../partials/footer")%>
+
+
+    </body>
+
+    </html>
